@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.application.housingloancalculator/com.application.housingloancalculator.HelloApplication
+                                com.application.housingloancalculator/com.application.housingloancalculator.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
