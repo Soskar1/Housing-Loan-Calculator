@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -33,16 +34,27 @@ public class Controller implements Initializable {
     }
 
     public void calculate(ActionEvent e) throws IOException {
-//        Integer.parseInt(dealAmountTextField.getText());
-//        Integer.parseInt(annualInterestTextField.getText());
-//        Integer.parseInt(yearsTextField.getText());
-//        Integer.parseInt(monthsTextField.getText());
+        int dealAmount = Integer.parseInt(dealAmountTextField.getText());
+        int annualInterest = Integer.parseInt(annualInterestTextField.getText());
+        int years = Integer.parseInt(yearsTextField.getText());
+        int months = Integer.parseInt(monthsTextField.getText());
 
+        openResultWindow(new InputData(dealAmount, annualInterest, years, months));
+    }
+
+    private void openResultWindow(InputData inputData) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("result.fxml"));
+        Parent root = fxmlLoader.load();
+
+        ResultWindowController resultWindowController = fxmlLoader.getController();
+        resultWindowController.initialize(inputData);
+
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(root);
+
         stage.setTitle("Housing Loan Calculator");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 }
