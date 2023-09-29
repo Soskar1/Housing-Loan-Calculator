@@ -39,7 +39,7 @@ public class Controller implements Initializable {
         int years = Integer.parseInt(yearsTextField.getText());
         int months = Integer.parseInt(monthsTextField.getText());
 
-        openResultWindow(new InputData(dealAmount, annualInterest, years, months));
+        openResultWindow(new InputData(dealAmount, annualInterest, years, months, repaymentScheduleChoiceBox.getValue()));
     }
 
     private void openResultWindow(InputData inputData) throws IOException {
