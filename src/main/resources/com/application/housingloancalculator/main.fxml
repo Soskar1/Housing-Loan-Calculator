@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="387.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.housingloancalculator.Controller">
    <children>
-      <ChoiceBox fx:id="chartTypeChoiceBox" layoutX="217.0" layoutY="170.0" prefHeight="25.0" prefWidth="100.0" />
+      <ChoiceBox fx:id="repaymentScheduleChoiceBox" layoutX="217.0" layoutY="170.0" prefHeight="25.0" prefWidth="100.0" />
       <Button fx:id="calculateButton" layoutX="101.0" layoutY="247.0" mnemonicParsing="false" onAction="#calculate" prefHeight="25.0" prefWidth="171.0" text="Calculate housing loan" />
       <Text layoutX="56.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Housing Loan Calculator" textAlignment="CENTER" wrappingWidth="260.0">
          <font>

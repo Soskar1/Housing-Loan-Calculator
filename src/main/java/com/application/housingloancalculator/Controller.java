@@ -1,6 +1,6 @@
 package com.application.housingloancalculator;
 
-import com.application.housingloancalculator.charts.ChartType;
+import com.application.housingloancalculator.calculator.RepaymentScheduleType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,12 +25,12 @@ public class Controller implements Initializable {
     @FXML
     private TextField monthsTextField;
     @FXML
-    private ChoiceBox<ChartType> chartTypeChoiceBox;
+    private ChoiceBox<RepaymentScheduleType> repaymentScheduleChoiceBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        chartTypeChoiceBox.getItems().add(ChartType.ANNUITY);
-        chartTypeChoiceBox.getItems().add(ChartType.LINEAR);
+        repaymentScheduleChoiceBox.getItems().add(RepaymentScheduleType.ANNUITY);
+        repaymentScheduleChoiceBox.getItems().add(RepaymentScheduleType.LINEAR);
     }
 
     public void calculate(ActionEvent e) throws IOException {
