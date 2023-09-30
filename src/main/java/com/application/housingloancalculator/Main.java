@@ -15,6 +15,7 @@ public class Main extends Application {
         stage.setTitle("Housing Loan Calculator");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 
     public static void main(String[] args) {

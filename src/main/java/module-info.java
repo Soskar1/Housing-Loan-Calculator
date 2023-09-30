@@ -5,4 +5,5 @@ module com.application.housingloancalculator {
 
     opens com.application.housingloancalculator to javafx.fxml;
     exports com.application.housingloancalculator;
+    exports com.application.housingloancalculator.calculator;
 }

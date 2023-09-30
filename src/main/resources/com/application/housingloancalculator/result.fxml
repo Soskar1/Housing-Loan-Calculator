@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.housingloancalculator.ResultWindowController">
+   <children>
+      <Text layoutX="319.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Result" textAlignment="CENTER">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <Pane layoutX="173.0" layoutY="348.0" prefHeight="80.0" prefWidth="361.0">
+         <children>
+            <DatePicker layoutX="221.0" layoutY="40.0" prefHeight="25.0" prefWidth="119.0" />
+            <DatePicker layoutX="59.0" layoutY="40.0" prefHeight="25.0" prefWidth="119.0" />
+            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show payment">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" />
+            <Text layoutX="194.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to" />
+         </children>
+      </Pane>
+      <Button layoutX="300.0" layoutY="442.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="108.0" text="Save" />
+      <LineChart fx:id="monthlyPaymentLineChart" layoutX="373.0" layoutY="78.0" legendVisible="false" prefHeight="276.0" prefWidth="318.0" title="Monthly Payment">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <TableView fx:id="paymentDataTableView" layoutX="20.0" layoutY="115.0" prefHeight="216.0" prefWidth="354.0">
+        <columns>
+          <TableColumn fx:id="monthColumn" prefWidth="47.0" text="Month" />
+            <TableColumn fx:id="loanBalanceColumn" prefWidth="78.0" text="Loan balance" />
+          <TableColumn fx:id="monthlyPaymentColumn" prefWidth="107.0" text="Monthly payment" />
+            <TableColumn fx:id="interestColumn" prefWidth="57.0" text="Interest" />
+            <TableColumn fx:id="creditColumn" prefWidth="64.0" text="Credit" />
+        </columns>
+      </TableView>
+      <Text layoutX="187.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Table">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
