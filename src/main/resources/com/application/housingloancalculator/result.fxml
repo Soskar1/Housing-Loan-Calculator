@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.housingloancalculator.ResultWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.housingloancalculator.ResultWindowController">
    <children>
       <Text layoutX="319.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Result" textAlignment="CENTER">
          <font>
@@ -36,11 +36,11 @@
       </LineChart>
       <TableView fx:id="paymentDataTableView" layoutX="20.0" layoutY="115.0" prefHeight="216.0" prefWidth="354.0">
         <columns>
-          <TableColumn prefWidth="65.5999755859375" text="Month" />
-            <TableColumn prefWidth="82.4000244140625" text="Loan balance" />
-          <TableColumn prefWidth="77.60003662109375" text="Monthly payment" />
-            <TableColumn prefWidth="61.5999755859375" text="Interest" />
-            <TableColumn prefWidth="64.0" text="Credit" />
+          <TableColumn fx:id="monthColumn" prefWidth="65.5999755859375" text="Month" />
+            <TableColumn fx:id="loanBalanceColumn" prefWidth="82.4000244140625" text="Loan balance" />
+          <TableColumn fx:id="monthlyPaymentColumn" prefWidth="77.60003662109375" text="Monthly payment" />
+            <TableColumn fx:id="interestColumn" prefWidth="61.5999755859375" text="Interest" />
+            <TableColumn fx:id="creditColumn" prefWidth="64.0" text="Credit" />
         </columns>
       </TableView>
       <Text layoutX="187.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Table">

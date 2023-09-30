@@ -2,7 +2,7 @@ package com.application.housingloancalculator.calculator;
 
 import com.application.housingloancalculator.InputData;
 
-public class AnnuityCalculator extends Calculator{
+public class AnnuityCalculator extends Calculator {
 
     public AnnuityCalculator(InputData inputData) {
         super(inputData);
