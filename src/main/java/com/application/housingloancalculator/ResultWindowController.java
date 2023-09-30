@@ -1,12 +1,14 @@
 package com.application.housingloancalculator;
 
 import com.application.housingloancalculator.calculator.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
 
 public class ResultWindowController {
 
@@ -16,6 +18,7 @@ public class ResultWindowController {
     @FXML private TableColumn<PaymentData, Double> monthlyPaymentColumn;
     @FXML private TableColumn<PaymentData, Double> interestColumn;
     @FXML private TableColumn<PaymentData, Double> creditColumn;
+    @FXML private LineChart<Integer, Double> monthlyPaymentLineChart;
 
     public void initialize(InputData inputData) {
         Calculator calculator;
@@ -26,10 +29,20 @@ public class ResultWindowController {
             calculator = new LinearCalculator(inputData);
         }
 
-        monthColumn.setCellValueFactory(new PropertyValueFactory<PaymentData, Integer>("month"));
-        loanBalanceColumn.setCellValueFactory(new PropertyValueFactory<PaymentData, Double>("loanBalance"));
-        monthlyPaymentColumn.setCellValueFactory(new PropertyValueFactory<PaymentData, Double>("monthlyPayment"));
-        interestColumn.setCellValueFactory(new PropertyValueFactory<PaymentData, Double>("interest"));
-        creditColumn.setCellValueFactory(new PropertyValueFactory<PaymentData, Double>("credit"));
+        ArrayList<PaymentData> paymentDataList = calculator.calculateAllPaymentData();
+
+        monthColumn.setCellValueFactory(new PropertyValueFactory<>("month"));
+        loanBalanceColumn.setCellValueFactory(new PropertyValueFactory<>("loanBalance"));
+        monthlyPaymentColumn.setCellValueFactory(new PropertyValueFactory<>("monthlyPayment"));
+        interestColumn.setCellValueFactory(new PropertyValueFactory<>("interest"));
+        creditColumn.setCellValueFactory(new PropertyValueFactory<>("credit"));
+
+        XYChart.Series series = new XYChart.Series();
+
+        for (PaymentData paymentData : paymentDataList) {
+            series.getData().add(new XYChart.Data(Integer.toString(paymentData.getMonth()), paymentData.getMonthlyPayment()));
+        }
+
+        monthlyPaymentLineChart.getData().add(series);
     }
 }

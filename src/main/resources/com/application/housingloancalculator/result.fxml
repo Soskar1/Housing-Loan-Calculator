@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.housingloancalculator.ResultWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.housingloancalculator.ResultWindowController">
    <children>
       <Text layoutX="319.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Result" textAlignment="CENTER">
          <font>
@@ -26,7 +26,7 @@
          </children>
       </Pane>
       <Button layoutX="300.0" layoutY="442.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="108.0" text="Save" />
-      <LineChart layoutX="389.0" layoutY="115.0" prefHeight="216.0" prefWidth="262.0">
+      <LineChart fx:id="monthlyPaymentLineChart" layoutX="373.0" layoutY="78.0" prefHeight="276.0" prefWidth="318.0" title="Monthly Payment">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -44,11 +44,6 @@
         </columns>
       </TableView>
       <Text layoutX="187.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Table">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text layoutX="499.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chart">
          <font>
             <Font size="18.0" />
          </font>

@@ -2,12 +2,12 @@ package com.application.housingloancalculator.calculator;
 
 public class PaymentData {
     private final int MONTH;
-    private final int LOAN_BALANCE;
-    private final int MONTHLY_PAYMENT;
-    private final int INTEREST;
-    private final int CREDIT;
+    private final double LOAN_BALANCE;
+    private final double MONTHLY_PAYMENT;
+    private final double INTEREST;
+    private final double CREDIT;
 
-    public PaymentData(int month, int loanBalance, int monthlyPayment, int interest, int credit) {
+    public PaymentData(int month, double loanBalance, double monthlyPayment, double interest, double credit) {
         MONTH = month;
         LOAN_BALANCE = loanBalance;
         MONTHLY_PAYMENT = monthlyPayment;
@@ -19,19 +19,19 @@ public class PaymentData {
         return MONTH;
     }
 
-    public int getLoanBalance() {
+    public double getLoanBalance() {
         return LOAN_BALANCE;
     }
 
-    public int getMonthlyPayment() {
+    public double getMonthlyPayment() {
         return MONTHLY_PAYMENT;
     }
 
-    public int getInterest() {
+    public double getInterest() {
         return INTEREST;
     }
 
-    public int getCredit() {
+    public double getCredit() {
         return CREDIT;
     }
 }

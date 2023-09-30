@@ -11,19 +11,7 @@ public abstract class Calculator {
         INPUT_DATA = inputData;
     }
 
-    public ArrayList<PaymentData> calculateAllPaymentData() {
-        ArrayList<PaymentData> paymentData = new ArrayList<>();
-
-        int totalMonths = INPUT_DATA.getYears() * 12 + INPUT_DATA.getMonths();
-
-        for (int i = 0; i < totalMonths; ++i) {
-            paymentData.add(calculatePaymentDataForMonth());
-        }
-
-        return paymentData;
-    }
-
-    protected abstract PaymentData calculatePaymentDataForMonth();
+    public abstract ArrayList<PaymentData> calculateAllPaymentData();
 
     protected InputData getInputData() {
         return INPUT_DATA;
