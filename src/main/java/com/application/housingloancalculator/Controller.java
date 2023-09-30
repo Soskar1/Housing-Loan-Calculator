@@ -30,17 +30,15 @@ public class Controller implements Initializable {
         repaymentScheduleChoiceBox.getItems().add(RepaymentScheduleType.LINEAR);
 
         SpinnerValueFactory<Integer> yearFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 30);
-        yearFactory.setValue(0);
         years.setValueFactory(yearFactory);
 
         SpinnerValueFactory<Integer> monthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 11);
-        monthFactory.setValue(0);
         months.setValueFactory(monthFactory);
     }
 
     public void calculate(ActionEvent e) throws IOException {
-        int dealAmount = Integer.parseInt(dealAmountTextField.getText());
-        int annualInterest = Integer.parseInt(annualInterestTextField.getText());
+        double dealAmount = Double.parseDouble(dealAmountTextField.getText());
+        double annualInterest = Double.parseDouble(annualInterestTextField.getText());
 
         openResultWindow(new InputData(dealAmount, annualInterest, years.getValue(), months.getValue(), repaymentScheduleChoiceBox.getValue()));
     }

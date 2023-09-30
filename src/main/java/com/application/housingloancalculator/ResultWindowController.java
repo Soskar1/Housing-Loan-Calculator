@@ -4,8 +4,7 @@ import com.application.housingloancalculator.calculator.*;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
@@ -20,8 +19,17 @@ public class ResultWindowController {
     @FXML private TableColumn<PaymentData, Double> creditColumn;
     @FXML private LineChart<Integer, Double> monthlyPaymentLineChart;
 
+    @FXML private Spinner<Integer> deferralStartMonth;
+    @FXML private Spinner<Integer> deferralDuration;
+    @FXML private TextField deferralInterest;
+
+    private InputData inputData;
+    private Calculator calculator;
+
     public void initialize(InputData inputData) {
-        Calculator calculator;
+        this.inputData = inputData;
+        initializeTableView();
+        initializeDeferralSection();
 
         if (inputData.getRepaymentScheduleType() == RepaymentScheduleType.ANNUITY) {
             calculator = new AnnuityCalculator(inputData);
@@ -30,20 +38,36 @@ public class ResultWindowController {
         }
 
         ArrayList<PaymentData> paymentDataList = calculator.calculateAllPaymentData();
-        initializeTableView(paymentDataList);
-        initializeLineChart(paymentDataList);
+        display(paymentDataList);
     }
 
-    private void initializeTableView(ArrayList<PaymentData> paymentDataList) {
+    private void initializeTableView() {
         monthColumn.setCellValueFactory(new PropertyValueFactory<>("month"));
         loanBalanceColumn.setCellValueFactory(new PropertyValueFactory<>("loanBalance"));
         monthlyPaymentColumn.setCellValueFactory(new PropertyValueFactory<>("monthlyPayment"));
         interestColumn.setCellValueFactory(new PropertyValueFactory<>("interest"));
         creditColumn.setCellValueFactory(new PropertyValueFactory<>("credit"));
-        paymentDataTableView.getItems().addAll(paymentDataList);
     }
 
-    private void initializeLineChart(ArrayList<PaymentData> paymentDataList) {
+    private void initializeDeferralSection() {
+        int totalMonths = inputData.getYears() * 12 + inputData.getMonths();
+        //TODO: also get all deferral durations sum
+
+        SpinnerValueFactory<Integer> deferralStartMonthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, totalMonths);
+        deferralStartMonth.setValueFactory(deferralStartMonthFactory);
+
+        SpinnerValueFactory<Integer> deferralDurationFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE);
+        deferralDuration.setValueFactory(deferralDurationFactory);
+    }
+
+    private void display(ArrayList<PaymentData> paymentDataList) {
+        paymentDataTableView.getItems().setAll(paymentDataList);
+        setLineChart(paymentDataList);
+    }
+
+    private void setLineChart(ArrayList<PaymentData> paymentDataList) {
+        monthlyPaymentLineChart.getData().clear();
+
         XYChart.Series series = new XYChart.Series();
 
         for (PaymentData paymentData : paymentDataList) {
@@ -51,5 +75,20 @@ public class ResultWindowController {
         }
 
         monthlyPaymentLineChart.getData().add(series);
+    }
+
+    public void addDeferral() {
+        if (deferralInterest.getText().isEmpty() || deferralDuration.getValue() == 0 || deferralStartMonth.getValue() == 0) {
+            return;
+        }
+
+        String deferralInterestText = deferralInterest.getText();
+        double deferralInterest = Double.parseDouble(deferralInterestText);
+
+        Deferral deferral = new Deferral(deferralStartMonth.getValue(), deferralDuration.getValue(), deferralInterest);
+        inputData.addDeferral(deferral);
+
+        ArrayList<PaymentData> paymentDataList = calculator.calculateAllPaymentData();
+        display(paymentDataList);
     }
 }
