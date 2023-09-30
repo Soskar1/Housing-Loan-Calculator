@@ -30,13 +30,20 @@ public class ResultWindowController {
         }
 
         ArrayList<PaymentData> paymentDataList = calculator.calculateAllPaymentData();
+        initializeTableView(paymentDataList);
+        initializeLineChart(paymentDataList);
+    }
 
+    private void initializeTableView(ArrayList<PaymentData> paymentDataList) {
         monthColumn.setCellValueFactory(new PropertyValueFactory<>("month"));
         loanBalanceColumn.setCellValueFactory(new PropertyValueFactory<>("loanBalance"));
         monthlyPaymentColumn.setCellValueFactory(new PropertyValueFactory<>("monthlyPayment"));
         interestColumn.setCellValueFactory(new PropertyValueFactory<>("interest"));
         creditColumn.setCellValueFactory(new PropertyValueFactory<>("credit"));
+        paymentDataTableView.getItems().addAll(paymentDataList);
+    }
 
+    private void initializeLineChart(ArrayList<PaymentData> paymentDataList) {
         XYChart.Series series = new XYChart.Series();
 
         for (PaymentData paymentData : paymentDataList) {

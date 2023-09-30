@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.housingloancalculator.ResultWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.housingloancalculator.ResultWindowController">
    <children>
       <Text layoutX="319.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Result" textAlignment="CENTER">
          <font>
@@ -26,7 +26,7 @@
          </children>
       </Pane>
       <Button layoutX="300.0" layoutY="442.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="108.0" text="Save" />
-      <LineChart fx:id="monthlyPaymentLineChart" layoutX="373.0" layoutY="78.0" prefHeight="276.0" prefWidth="318.0" title="Monthly Payment">
+      <LineChart fx:id="monthlyPaymentLineChart" layoutX="373.0" layoutY="78.0" legendVisible="false" prefHeight="276.0" prefWidth="318.0" title="Monthly Payment">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -36,10 +36,10 @@
       </LineChart>
       <TableView fx:id="paymentDataTableView" layoutX="20.0" layoutY="115.0" prefHeight="216.0" prefWidth="354.0">
         <columns>
-          <TableColumn fx:id="monthColumn" prefWidth="65.5999755859375" text="Month" />
-            <TableColumn fx:id="loanBalanceColumn" prefWidth="82.4000244140625" text="Loan balance" />
-          <TableColumn fx:id="monthlyPaymentColumn" prefWidth="77.60003662109375" text="Monthly payment" />
-            <TableColumn fx:id="interestColumn" prefWidth="61.5999755859375" text="Interest" />
+          <TableColumn fx:id="monthColumn" prefWidth="47.0" text="Month" />
+            <TableColumn fx:id="loanBalanceColumn" prefWidth="78.0" text="Loan balance" />
+          <TableColumn fx:id="monthlyPaymentColumn" prefWidth="107.0" text="Monthly payment" />
+            <TableColumn fx:id="interestColumn" prefWidth="57.0" text="Interest" />
             <TableColumn fx:id="creditColumn" prefWidth="64.0" text="Credit" />
         </columns>
       </TableView>
