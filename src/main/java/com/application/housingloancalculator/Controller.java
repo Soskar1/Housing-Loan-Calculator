@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -18,23 +20,29 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
     @FXML private TextField dealAmountTextField;
     @FXML private TextField annualInterestTextField;
-    @FXML private TextField yearsTextField;
-    @FXML private TextField monthsTextField;
+    @FXML private Spinner<Integer> years;
+    @FXML private Spinner<Integer> months;
     @FXML private ChoiceBox<RepaymentScheduleType> repaymentScheduleChoiceBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         repaymentScheduleChoiceBox.getItems().add(RepaymentScheduleType.ANNUITY);
         repaymentScheduleChoiceBox.getItems().add(RepaymentScheduleType.LINEAR);
+
+        SpinnerValueFactory<Integer> yearFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 30);
+        yearFactory.setValue(0);
+        years.setValueFactory(yearFactory);
+
+        SpinnerValueFactory<Integer> monthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 11);
+        monthFactory.setValue(0);
+        months.setValueFactory(monthFactory);
     }
 
     public void calculate(ActionEvent e) throws IOException {
         int dealAmount = Integer.parseInt(dealAmountTextField.getText());
         int annualInterest = Integer.parseInt(annualInterestTextField.getText());
-        int years = Integer.parseInt(yearsTextField.getText());
-        int months = Integer.parseInt(monthsTextField.getText());
 
-        openResultWindow(new InputData(dealAmount, annualInterest, years, months, repaymentScheduleChoiceBox.getValue()));
+        openResultWindow(new InputData(dealAmount, annualInterest, years.getValue(), months.getValue(), repaymentScheduleChoiceBox.getValue()));
     }
 
     private void openResultWindow(InputData inputData) throws IOException {
