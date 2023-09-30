@@ -16,16 +16,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    @FXML
-    private TextField dealAmountTextField;
-    @FXML
-    private TextField annualInterestTextField;
-    @FXML
-    private TextField yearsTextField;
-    @FXML
-    private TextField monthsTextField;
-    @FXML
-    private ChoiceBox<RepaymentScheduleType> repaymentScheduleChoiceBox;
+    @FXML private TextField dealAmountTextField;
+    @FXML private TextField annualInterestTextField;
+    @FXML private TextField yearsTextField;
+    @FXML private TextField monthsTextField;
+    @FXML private ChoiceBox<RepaymentScheduleType> repaymentScheduleChoiceBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

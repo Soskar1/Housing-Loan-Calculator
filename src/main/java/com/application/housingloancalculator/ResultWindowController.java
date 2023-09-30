@@ -17,11 +17,7 @@ public class ResultWindowController {
     @FXML private TableColumn<PaymentData, Double> interestColumn;
     @FXML private TableColumn<PaymentData, Double> creditColumn;
 
-    private InputData inputData;
-
     public void initialize(InputData inputData) {
-        this.inputData = inputData;
-
         Calculator calculator;
 
         if (inputData.getRepaymentScheduleType() == RepaymentScheduleType.ANNUITY) {
