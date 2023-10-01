@@ -29,7 +29,7 @@ public class ResultWindowController {
     public void initialize(InputData inputData) {
         this.inputData = inputData;
         initializeTableView();
-        initializeDeferralSection();
+        updateDeferralSection();
 
         if (inputData.getRepaymentScheduleType() == RepaymentScheduleType.ANNUITY) {
             calculator = new AnnuityCalculator(inputData);
@@ -49,7 +49,7 @@ public class ResultWindowController {
         creditColumn.setCellValueFactory(new PropertyValueFactory<>("credit"));
     }
 
-    private void initializeDeferralSection() {
+    private void updateDeferralSection() {
         int totalMonths = inputData.getTotalMonths();
 
         ArrayList<Deferral> deferrals = inputData.getDeferrals();
@@ -95,6 +95,6 @@ public class ResultWindowController {
         ArrayList<PaymentData> paymentDataList = calculator.calculateAllPaymentData();
 
         display(paymentDataList);
-        initializeDeferralSection();
+        updateDeferralSection();
     }
 }
