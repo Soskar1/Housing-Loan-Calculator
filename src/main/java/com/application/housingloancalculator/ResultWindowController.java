@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ResultWindowController {
 
@@ -24,13 +23,16 @@ public class ResultWindowController {
     @FXML private Spinner<Integer> deferralDuration;
     @FXML private TextField deferralInterest;
 
+    @FXML private Spinner<Integer> filterMonthFrom;
+    @FXML private Spinner<Integer> filterMonthTo;
+
     private InputData inputData;
     private Calculator calculator;
 
     public void initialize(InputData inputData) {
         this.inputData = inputData;
         initializeTableView();
-        updateDeferralSection();
+        updateSpinners();
 
         if (inputData.getRepaymentScheduleType() == RepaymentScheduleType.ANNUITY) {
             calculator = new AnnuityCalculator(inputData);
@@ -50,7 +52,7 @@ public class ResultWindowController {
         creditColumn.setCellValueFactory(new PropertyValueFactory<>("credit"));
     }
 
-    private void updateDeferralSection() {
+    private void updateSpinners() {
         int totalMonths = inputData.getTotalMonths();
 
         ArrayList<Deferral> deferrals = inputData.getDeferrals();
@@ -63,6 +65,14 @@ public class ResultWindowController {
 
         SpinnerValueFactory<Integer> deferralDurationFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE);
         deferralDuration.setValueFactory(deferralDurationFactory);
+
+        SpinnerValueFactory<Integer> filterMonthFromFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, totalMonths);
+        filterMonthFromFactory.setValue(1);
+        filterMonthFrom.setValueFactory(filterMonthFromFactory);
+
+        SpinnerValueFactory<Integer> filterMonthToFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, totalMonths);
+        filterMonthToFactory.setValue(totalMonths);
+        filterMonthTo.setValueFactory(filterMonthToFactory);
     }
 
     private void display(ArrayList<PaymentData> paymentDataList) {
@@ -104,7 +114,7 @@ public class ResultWindowController {
         ArrayList<PaymentData> paymentDataList = calculator.calculateAllPaymentData();
 
         display(paymentDataList);
-        updateDeferralSection();
+        updateSpinners();
     }
 
     private boolean checkForCollisions(int startMonth, int duration) {
