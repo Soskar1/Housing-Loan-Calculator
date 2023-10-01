@@ -16,4 +16,8 @@ public abstract class Calculator {
     protected InputData getInputData() {
         return INPUT_DATA;
     }
+
+    protected double round(double value) {
+        return Math.round(value * 100) / 100.0;
+    }
 }

@@ -16,25 +16,19 @@ public class AnnuityCalculator extends Calculator {
 
         int totalMonths = inputData.getMonths() + inputData.getYears() * 12;
         double monthInterest = inputData.getAnnualInterest() / 100.0 / 12.0;
-
         double tmp = Math.pow(monthInterest + 1, totalMonths);
         double balance = inputData.getDealAmount();
 
         for (int i = 0; i < totalMonths; ++i) {
-            double monthPayment = inputData.getDealAmount() * monthInterest * tmp / (tmp - 1);
-            monthPayment = Math.round(monthPayment * 100) / 100.0;
-
-            double interest = balance * monthInterest;
-            interest = Math.round(interest * 100) / 100.0;
-
-            double credit = monthPayment - interest;
-            credit = Math.round(credit * 100) / 100.0;
+            double monthPayment = round(inputData.getDealAmount() * monthInterest * tmp / (tmp - 1));
+            double interest = round(balance * monthInterest);
+            double credit = round(monthPayment - interest);
 
             PaymentData paymentData = new PaymentData(i + 1, balance, monthPayment, interest, credit);
             paymentDataList.add(paymentData);
 
             balance -= credit;
-            balance = Math.round(balance * 100) / 100.0;
+            balance = round(balance);
         }
 
         return paymentDataList;

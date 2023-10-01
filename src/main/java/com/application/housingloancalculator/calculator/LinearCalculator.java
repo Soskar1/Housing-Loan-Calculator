@@ -34,25 +34,19 @@ public class LinearCalculator extends Calculator {
         int totalMonths = inputData.getMonths() + inputData.getYears() * 12;
         double annualInterest = inputData.getAnnualInterest() / 100.0;
         double monthInterest = annualInterest / 12.0;
-
         double balance = inputData.getDealAmount();
 
         for (int i = 0; i < totalMonths; ++i) {
             int daysInMonth = DAYS_IN_MONTHS.get(i % 12);
-            double monthPayment = balance / (totalMonths - i) + balance * annualInterest * daysInMonth / DAYS_IN_YEAR;
-            monthPayment = Math.round(monthPayment * 100) / 100.0;
-
-            double interest = balance * monthInterest;
-            interest = Math.round(interest * 100) / 100.0;
-
-            double credit = monthPayment - interest;
-            credit = Math.round(credit * 100) / 100.0;
+            double monthPayment = round(balance / (totalMonths - i) + balance * annualInterest * daysInMonth / DAYS_IN_YEAR);
+            double interest = round(balance * monthInterest);
+            double credit = round(monthPayment - interest);
 
             PaymentData paymentData = new PaymentData(i + 1, balance, monthPayment, interest, credit);
             paymentDataList.add(paymentData);
 
             balance -= credit;
-            balance = Math.round(balance * 100) / 100.0;
+            balance = round(balance);
         }
 
         return paymentDataList;
