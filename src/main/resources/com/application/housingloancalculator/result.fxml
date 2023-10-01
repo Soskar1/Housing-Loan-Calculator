@@ -56,10 +56,10 @@
                </font>
             </Text>
             <Text layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start from" />
-            <Spinner fx:id="deferralStartMonth" layoutX="62.0" layoutY="31.0" prefHeight="17.0" prefWidth="83.0" />
+            <Spinner fx:id="deferralStartMonth" editable="true" layoutX="62.0" layoutY="31.0" prefHeight="17.0" prefWidth="83.0" />
             <Text layoutX="152.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="month" />
             <Text layoutX="8.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" />
-            <Spinner fx:id="deferralDuration" layoutX="62.0" layoutY="61.0" prefHeight="17.0" prefWidth="83.0" />
+            <Spinner fx:id="deferralDuration" editable="true" layoutX="62.0" layoutY="61.0" prefHeight="17.0" prefWidth="83.0" />
             <Text layoutX="152.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="months" />
             <Button layoutX="4.0" layoutY="124.0" mnemonicParsing="false" onAction="#addDeferral" text="Add deferral" />
             <Text layoutX="15.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Interest" />

@@ -51,7 +51,11 @@ public class ResultWindowController {
 
     private void initializeDeferralSection() {
         int totalMonths = inputData.getTotalMonths();
-        //TODO: also get all deferral durations sum
+
+        ArrayList<Deferral> deferrals = inputData.getDeferrals();
+        for (Deferral deferral : deferrals) {
+            totalMonths += deferral.getDuration();
+        }
 
         SpinnerValueFactory<Integer> deferralStartMonthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, totalMonths);
         deferralStartMonth.setValueFactory(deferralStartMonthFactory);
@@ -89,8 +93,8 @@ public class ResultWindowController {
         inputData.addDeferral(deferral);
 
         ArrayList<PaymentData> paymentDataList = calculator.calculateAllPaymentData();
-        System.out.println("yes");
 
         display(paymentDataList);
+        initializeDeferralSection();
     }
 }
