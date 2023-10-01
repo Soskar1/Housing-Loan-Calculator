@@ -16,4 +16,22 @@ public abstract class Calculator {
     protected InputData getInputData() {
         return INPUT_DATA;
     }
+
+    protected double round(double value) {
+        return Math.round(value * 100) / 100.0;
+    }
+
+    protected ArrayList<PaymentData> calculateDeferral(double loanBalance, Deferral deferral) {
+        ArrayList<PaymentData> deferralPaymentData = new ArrayList<>();
+
+        double fixedInterest = deferral.getInterest() / 100;
+        double interest = round(loanBalance * fixedInterest);
+
+        for (int i = 0; i < deferral.getDuration(); ++i) {
+            PaymentData paymentData = new PaymentData(deferral.getStartMonth() + i, loanBalance, interest, interest, 0);
+            deferralPaymentData.add(paymentData);
+        }
+
+        return deferralPaymentData;
+    }
 }
