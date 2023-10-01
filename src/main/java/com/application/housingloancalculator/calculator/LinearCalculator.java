@@ -21,6 +21,7 @@ public class LinearCalculator extends Calculator {
         put(11, 31);
         }};
     private final int DAYS_IN_YEAR = 365;
+    private final int MONTHS_IN_YEAR = 12;
 
     public LinearCalculator(InputData inputData) {
         super(inputData);
@@ -31,13 +32,25 @@ public class LinearCalculator extends Calculator {
         ArrayList<PaymentData> paymentDataList = new ArrayList<>();
         InputData inputData = getInputData();
 
-        int totalMonths = inputData.getMonths() + inputData.getYears() * 12;
+        int totalMonths = inputData.getTotalMonths();
         double annualInterest = inputData.getAnnualInterest() / 100.0;
-        double monthInterest = annualInterest / 12.0;
+        double monthInterest = annualInterest / MONTHS_IN_YEAR;
         double balance = inputData.getDealAmount();
 
+        ArrayList<Deferral> deferrals = new ArrayList<>(inputData.getDeferrals());
+
         for (int i = 0; i < totalMonths; ++i) {
-            int daysInMonth = DAYS_IN_MONTHS.get(i % 12);
+            for (Deferral deferral : deferrals) {
+                if (i + 1 == deferral.getStartMonth()) {
+                    ArrayList<PaymentData> deferralPaymentData = calculateDeferral(balance, deferral);
+                    paymentDataList.addAll(deferralPaymentData);
+
+                    totalMonths += deferral.getDuration();
+                    i += deferral.getDuration();
+                }
+            }
+
+            int daysInMonth = DAYS_IN_MONTHS.get(i % MONTHS_IN_YEAR);
             double monthPayment = round(balance / (totalMonths - i) + balance * annualInterest * daysInMonth / DAYS_IN_YEAR);
             double interest = round(balance * monthInterest);
             double credit = round(monthPayment - interest);

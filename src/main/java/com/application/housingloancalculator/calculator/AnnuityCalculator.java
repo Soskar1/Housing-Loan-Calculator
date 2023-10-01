@@ -14,7 +14,7 @@ public class AnnuityCalculator extends Calculator {
         ArrayList<PaymentData> paymentDataList = new ArrayList<>();
         InputData inputData = getInputData();
 
-        int totalMonths = inputData.getMonths() + inputData.getYears() * 12;
+        int totalMonths = inputData.getTotalMonths();
         double monthInterest = inputData.getAnnualInterest() / 100.0 / 12.0;
         double tmp = Math.pow(monthInterest + 1, totalMonths);
         double balance = inputData.getDealAmount();

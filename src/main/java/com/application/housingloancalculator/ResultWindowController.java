@@ -50,7 +50,7 @@ public class ResultWindowController {
     }
 
     private void initializeDeferralSection() {
-        int totalMonths = inputData.getYears() * 12 + inputData.getMonths();
+        int totalMonths = inputData.getTotalMonths();
         //TODO: also get all deferral durations sum
 
         SpinnerValueFactory<Integer> deferralStartMonthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, totalMonths);
