@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ResultWindowController {
 
@@ -29,6 +30,8 @@ public class ResultWindowController {
     private InputData inputData;
     private Calculator calculator;
 
+    private ArrayList<PaymentData> currentPaymentData;
+
     public void initialize(InputData inputData) {
         this.inputData = inputData;
         initializeTableView();
@@ -42,6 +45,8 @@ public class ResultWindowController {
 
         ArrayList<PaymentData> paymentDataList = calculator.calculateAllPaymentData();
         display(paymentDataList);
+
+        currentPaymentData = paymentDataList;
     }
 
     private void initializeTableView() {
@@ -75,12 +80,12 @@ public class ResultWindowController {
         filterMonthTo.setValueFactory(filterMonthToFactory);
     }
 
-    private void display(ArrayList<PaymentData> paymentDataList) {
+    private void display(List<PaymentData> paymentDataList) {
         paymentDataTableView.getItems().setAll(paymentDataList);
         setLineChart(paymentDataList);
     }
 
-    private void setLineChart(ArrayList<PaymentData> paymentDataList) {
+    private void setLineChart(List<PaymentData> paymentDataList) {
         monthlyPaymentLineChart.getData().clear();
 
         XYChart.Series series = new XYChart.Series();
@@ -115,6 +120,8 @@ public class ResultWindowController {
 
         display(paymentDataList);
         updateSpinners();
+
+        currentPaymentData = paymentDataList;
     }
 
     private boolean checkForCollisions(int startMonth, int duration) {
@@ -138,5 +145,17 @@ public class ResultWindowController {
         }
 
         return false;
+    }
+
+    public void applyFilter() {
+        if (filterMonthFrom.getValue() > filterMonthTo.getValue()) {
+            return;
+        }
+
+        int from = filterMonthFrom.getValue() - 1;
+        int to = filterMonthTo.getValue();
+        List<PaymentData> filter = currentPaymentData.subList(from, to);
+
+        display(filter);
     }
 }

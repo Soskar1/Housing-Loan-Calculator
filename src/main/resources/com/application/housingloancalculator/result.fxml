@@ -23,16 +23,16 @@
             <Text layoutX="132.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to" />
             <Spinner fx:id="filterMonthFrom" editable="true" layoutX="41.0" layoutY="40.0" prefHeight="25.0" prefWidth="83.0" />
             <Spinner fx:id="filterMonthTo" editable="true" layoutX="151.0" layoutY="40.0" prefHeight="25.0" prefWidth="83.0" />
-            <Button layoutX="9.0" layoutY="75.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Apply filter" />
+            <Button layoutX="9.0" layoutY="75.0" mnemonicParsing="false" onAction="#applyFilter" prefHeight="25.0" prefWidth="82.0" text="Apply filter" />
          </children>
       </Pane>
       <Button layoutX="584.0" layoutY="469.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="108.0" text="Save" />
-      <LineChart fx:id="monthlyPaymentLineChart" layoutX="374.0" layoutY="66.0" legendVisible="false" prefHeight="293.0" prefWidth="318.0" title="Monthly Payment">
+      <LineChart fx:id="monthlyPaymentLineChart" animated="false" layoutX="374.0" layoutY="66.0" legendVisible="false" prefHeight="293.0" prefWidth="318.0" title="Monthly Payment">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <CategoryAxis animated="false" side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis animated="false" side="LEFT" />
         </yAxis>
       </LineChart>
       <TableView fx:id="paymentDataTableView" layoutX="20.0" layoutY="98.0" prefHeight="238.0" prefWidth="354.0">
