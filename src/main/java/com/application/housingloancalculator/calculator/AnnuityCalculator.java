@@ -19,7 +19,19 @@ public class AnnuityCalculator extends Calculator {
         double tmp = Math.pow(monthInterest + 1, totalMonths);
         double balance = inputData.getDealAmount();
 
+        ArrayList<Deferral> deferrals = new ArrayList<>(inputData.getDeferrals());
+
         for (int i = 0; i < totalMonths; ++i) {
+            for (Deferral deferral : deferrals) {
+                if (i + 1 == deferral.getStartMonth()) {
+                    ArrayList<PaymentData> deferralPaymentData = calculateDeferral(balance, deferral);
+                    paymentDataList.addAll(deferralPaymentData);
+
+                    totalMonths += deferral.getDuration();
+                    i += deferral.getDuration();
+                }
+            }
+
             double monthPayment = round(inputData.getDealAmount() * monthInterest * tmp / (tmp - 1));
             double interest = round(balance * monthInterest);
             double credit = round(monthPayment - interest);

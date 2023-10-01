@@ -89,6 +89,8 @@ public class ResultWindowController {
         inputData.addDeferral(deferral);
 
         ArrayList<PaymentData> paymentDataList = calculator.calculateAllPaymentData();
+        System.out.println("yes");
+
         display(paymentDataList);
     }
 }
