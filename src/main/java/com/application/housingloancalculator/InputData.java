@@ -1,9 +1,11 @@
 package com.application.housingloancalculator;
 
 import com.application.housingloancalculator.calculator.Deferral;
+import com.application.housingloancalculator.calculator.DeferralSort;
 import com.application.housingloancalculator.calculator.RepaymentScheduleType;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class InputData {
     private final double DEAL_AMOUNT;
@@ -37,6 +39,7 @@ public class InputData {
 
     public void addDeferral(Deferral deferral) {
         DEFERRALS.add(deferral);
+        DEFERRALS.sort(new DeferralSort());
     }
 
     public ArrayList<Deferral> getDeferrals() {

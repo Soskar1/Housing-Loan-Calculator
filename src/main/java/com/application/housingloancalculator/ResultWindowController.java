@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ResultWindowController {
 
@@ -86,15 +87,46 @@ public class ResultWindowController {
             return;
         }
 
+        int startMonth = deferralStartMonth.getValue();
+        int duration = deferralDuration.getValue();
+
+        if (checkForCollisions(startMonth, duration)) {
+            System.out.println("collision!");
+            return;
+        }
+
         String deferralInterestText = deferralInterest.getText();
         double deferralInterest = Double.parseDouble(deferralInterestText);
 
-        Deferral deferral = new Deferral(deferralStartMonth.getValue(), deferralDuration.getValue(), deferralInterest);
+        Deferral deferral = new Deferral(startMonth, duration, deferralInterest);
         inputData.addDeferral(deferral);
 
         ArrayList<PaymentData> paymentDataList = calculator.calculateAllPaymentData();
 
         display(paymentDataList);
         updateDeferralSection();
+    }
+
+    private boolean checkForCollisions(int startMonth, int duration) {
+        ArrayList<Deferral> deferrals = inputData.getDeferrals();
+        int endMonth = startMonth + duration - 1;
+
+        for (Deferral deferral : deferrals) {
+            int deferralEndMonth = deferral.getStartMonth() + deferral.getDuration() - 1;
+
+            if (startMonth == deferral.getStartMonth() || endMonth == deferral.getStartMonth() || startMonth == deferralEndMonth) {
+                return true;
+            }
+
+            if (startMonth < deferral.getStartMonth() && deferral.getStartMonth() < endMonth) {
+                return true;
+            }
+
+            if (startMonth > deferral.getStartMonth() && deferralEndMonth > startMonth) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
