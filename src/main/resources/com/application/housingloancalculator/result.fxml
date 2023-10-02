@@ -26,7 +26,7 @@
             <Button layoutX="9.0" layoutY="75.0" mnemonicParsing="false" onAction="#applyFilter" prefHeight="25.0" prefWidth="82.0" text="Apply filter" />
          </children>
       </Pane>
-      <Button layoutX="584.0" layoutY="469.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="108.0" text="Save" />
+      <Button layoutX="584.0" layoutY="469.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="108.0" text="Save" />
       <LineChart fx:id="monthlyPaymentLineChart" animated="false" layoutX="374.0" layoutY="66.0" legendVisible="false" prefHeight="293.0" prefWidth="318.0" title="Monthly Payment">
         <xAxis>
           <CategoryAxis animated="false" side="BOTTOM" />
