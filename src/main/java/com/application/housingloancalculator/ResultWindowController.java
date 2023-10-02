@@ -13,12 +13,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -199,7 +195,7 @@ public class ResultWindowController {
             ++rowID;
         }
 
-        String path = "D:/test.xlsx";
+        String path = "D:/Projects/Java/Housing-Loan-Calculator/result.xlsx";
         FileOutputStream out = new FileOutputStream(new File(path));
 
         workbook.write(out);
