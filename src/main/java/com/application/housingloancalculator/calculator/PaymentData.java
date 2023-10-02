@@ -34,4 +34,13 @@ public class PaymentData {
     public double getCredit() {
         return CREDIT;
     }
+
+    public String[] getDataToSave() {
+        return new String[]{
+                Integer.toString(getMonth()),
+                Double.toString(getLoanBalance()),
+                Double.toString(getMonthlyPayment()),
+                Double.toString(getInterest()),
+                Double.toString(getCredit())};
+    }
 }

@@ -7,6 +7,19 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.File;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,5 +170,39 @@ public class ResultWindowController {
         List<PaymentData> filter = currentPaymentData.subList(from, to);
 
         display(filter);
+    }
+
+    public void save() throws IOException {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet spreadsheet = workbook.createSheet("Payment Data");
+
+        XSSFRow row = spreadsheet.createRow(0);
+        row.createCell(0).setCellValue("Month");
+        row.createCell(1).setCellValue("Loan Balance");
+        row.createCell(2).setCellValue("Monthly Payment");
+        row.createCell(3).setCellValue("Interest");
+        row.createCell(4).setCellValue("Credit");
+
+        int rowID = 1;
+        for (PaymentData paymentData : currentPaymentData) {
+            row = spreadsheet.createRow(rowID);
+            int cellID = 0;
+
+            String[] dataToSave = paymentData.getDataToSave();
+
+            for (String data : dataToSave) {
+                Cell cell = row.createCell(cellID);
+                cell.setCellValue(data);
+                ++cellID;
+            }
+
+            ++rowID;
+        }
+
+        String path = "D:/test.xlsx";
+        FileOutputStream out = new FileOutputStream(new File(path));
+
+        workbook.write(out);
+        out.close();
     }
 }
